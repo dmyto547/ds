@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dima ❤️ Hadi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+min-height:100vh;
+background:radial-gradient(circle at top,#ffafbd,#ffc3a0,#ffd1ff);
+font-family:'Playfair Display',serif;
+/* Убрали overflow:hidden, чтобы можно было скроллить галерею */
+overflow-x:hidden; 
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+padding: 20px;
+}
+
+/* Falling elements */
+.fall{
+position:fixed; /* Изменили на fixed */
+top:-50px;
+z-index: 0;
+animation:fall linear infinite;
+pointer-events: none;
+}
+@keyframes fall{
+0%{transform:translateY(0) rotate(0);opacity:0}
+10%{opacity:1}
+100%{transform:translateY(120vh) rotate(360deg);opacity:0}
+}
+
+/* Main card */
+.card, .final{
+position: relative;
+z-index: 10;
+background:rgba(255,255,255,0.18);
+backdrop-filter:blur(15px);
+padding:40px 25px;
+border-radius:30px;
+text-align:center;
+box-shadow:0 0 50px rgba(255,105,180,0.4);
+animation:fadeIn 1.5s;
+max-width: 800px;
+width: 100%;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:scale(.9)}
+to{opacity:1;transform:scale(1)}
+}
+
+h1{
+font-size:2.5em;
+margin-bottom:20px;
+text-shadow:0 0 25px rgba(255,255,255,.9);
+}
+
+.buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+margin-top:30px;
+}
+
+button{
+font-size:1.1em;
+padding:12px 35px;
+border-radius:50px;
+border:none;
+cursor:pointer;
+transition:.4s;
+}
+
+#yes{
+background:linear-gradient(45deg,#ff4d6d,#ff8fab);
+color:white;
+box-shadow:0 0 20px rgba(255,77,109,.6);
+}
+#yes:hover{transform:scale(1.1)}
+
+#no{
+background:rgba(255,255,255,.3);
+color:white;
+}
+
+/* Timer */
+.timer{
+margin-top:20px;
+font-size:1.1em;
+opacity: 0.9;
+}
+
+/* Final screen */
+.final{
+display:none;
+animation:love 1.5s forwards;
+}
+@keyframes love{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.final h2{
+font-family:'Great Vibes',cursive;
+font-size:3.5em;
+margin-bottom:15px;
+color: #fff;
+}
+
+/* --- ОБНОВЛЕННАЯ ГАЛЕРЕЯ --- */
+.photos{
+margin-top:30px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 25px;
+justify-items: center;
+}
+
+.photo-card {
+background: white;
+padding: 12px 12px 35px 12px; /* Поля как у полароида */
+box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+transition: transform 0.5s ease;
+width: 220px; /* Фиксированная ширина для симметрии */
+}
+
+/* Легкий наклон для эффекта раскиданных фото */
+.photo-card:nth-child(odd) { transform: rotate(-3deg); }
+.photo-card:nth-child(even) { transform: rotate(3deg); }
+
+.photo-card:hover {
+transform: scale(1.05) rotate(0deg) !important;
+z-index: 20;
+}
+
+.photo-box {
+width: 100%;
+height: 200px; /* Одинаковая высота для всех фото */
+overflow: hidden;
+background: #eee;
+}
+
+.photo-box img {
+width: 100%;
+height: 100%;
+object-fit: cover; /* Фото заполнит область без искажений */
+}
+
+.caption{
+margin-top:15px;
+font-size:0.9em;
+color: #ff4d6d;
+font-family: 'Great Vibes', cursive;
+font-size: 1.4em;
+}
+
+/* Music */
+.music{
+position:fixed;
+bottom:20px;
+right:20px;
+background:rgba(255,255,255,.25);
+padding:10px 15px;
+border-radius:30px;
+cursor:pointer;
+backdrop-filter:blur(10px);
+z-index: 100;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+    <h1>Will you be my Valentine,<br>Hadi? 💖</h1>
+    <div class="buttons">
+        <button id="yes" onclick="accept()">Yes 💘</button>
+        <button id="no" onmouseover="run()">No 🙈</button>
+    </div>
+    <div class="timer" id="timer"></div>
+</div>
+
+<div class="final" id="final">
+    <h2>Hadi 💕</h2>
+    <p style="font-size:1.2em; line-height: 1.5;">
+        From the moment you appeared in my life,<br>
+        everything became warmer and brighter.<br><br>
+        This Valentine’s Day — and every day —<br>
+        I choose you.
+    </p>
+
+    <h3 style="margin-top:30px; font-size:1.4em; color: #ffebf0;">
+        The girl who stole my heart 💗
+    </h3>
+
+    <div class="photos">
+        <div class="photo-card">
+            <div class="photo-box">
+                <img src="hadi1.jpg" alt="Hadi 1">
+            </div>
+            <div class="caption">Feels like home</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo-box">
+                <img src="hadi2.jpg" alt="Hadi 2">
+            </div>
+            <div class="caption">The moment I fell</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo-box">
+                <img src="hadi3.jpg" alt="Hadi 3">
+            </div>
+            <div class="caption">My favorite view</div>
+        </div>
+    </div>
+
+    <p style="margin-top:30px; font-weight: bold;">With love, Dima ❤️</p>
+</div>
+
+<div class="music" onclick="toggle()">🎵 Music</div>
+
+<audio id="audio" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_2b2a97d94b.mp3">
+</audio>
+
+<script>
+/* Falling elements */
+const symbols=["🌸","🌹","🌷","💖","💕","💘"];
+setInterval(()=>{
+    let e=document.createElement("div");
+    e.className="fall";
+    e.innerText=symbols[Math.floor(Math.random()*symbols.length)];
+    e.style.left=Math.random()*100+"vw";
+    e.style.fontSize=20+Math.random()*25+"px";
+    e.style.animationDuration=5+Math.random()*6+"s";
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),10000);
+},300);
+
+function run(){
+    let n=document.getElementById("no");
+    n.style.position="fixed";
+    n.style.left=Math.random()*70+15+"vw";
+    n.style.top=Math.random()*70+15+"vh";
+}
+
+function accept(){
+    document.getElementById("card").style.display="none";
+    document.getElementById("final").style.display="block";
+    explode();
+}
+
+function explode(){
+    for(let i=0;i<40;i++){
+        let h=document.createElement("div");
+        h.innerText="💖";
+        h.style.position="fixed";
+        h.style.left="50%";
+        h.style.top="50%";
+        h.style.fontSize=20+Math.random()*30+"px";
+        h.style.transition="1.5s";
+        h.style.zIndex="100";
+        document.body.appendChild(h);
+        setTimeout(()=>{
+            h.style.transform=`translate(${Math.random()*600-300}px,${Math.random()*600-300}px)`;
+            h.style.opacity=0;
+        },50);
+        setTimeout(()=>h.remove(),1600);
+    }
+}
+
+let playing=false;
+function toggle(){
+    let a=document.getElementById("audio");
+    playing?a.pause():a.play();
+    playing=!playing;
+}
+
+const target=new Date(new Date().getFullYear(),1,14);
+setInterval(()=>{
+    let now=new Date();
+    let d=target-now;
+    if (d<0) {
+        document.getElementById("timer").innerText = "Happy Valentine's Day! ❤️";
+        return;
+    }
+    let days=Math.floor(d/86400000);
+    let h=Math.floor(d%86400000/3600000);
+    let m=Math.floor(d%3600000/60000);
+    document.getElementById("timer").innerText=
+    `⏳ Until Valentine’s Day: ${days}d ${h}h ${m}m`;
+},1000);
+</script>
+
+</body>
+</html>
